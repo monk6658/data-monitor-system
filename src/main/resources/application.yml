@@ -1,0 +1,46 @@
+
+
+server:
+  port: 9094
+  servlet:
+    context-path:
+  max-http-header-size: 4048576
+  tomcat:
+    remote-ip-header: x-forward-for
+    uri-encoding: UTF-8
+    max-threads: 1000
+    connection-timeout: 30000
+
+spring:
+  profiles:
+    active: @spring.profiles.active@ #获取运行的参数
+
+  http:  #编码格式
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,classpath:/templates/
+
+  freemarker:
+    allow-request-override: true
+    cache: false # 关闭缓存，及时刷新，上线生产环境需要修改为true
+    check-template-location: true
+    charset: UTF-8
+    content-type: text/html; charset=utf-8
+    expose-request-attributes: true
+    expose-session-attributes: true
+    expose-spring-macro-helpers: true
+    suffix: .html
+    template-loader-path: classpath:/templates
+
+mybatis:
+  type-aliases-package: com.monitor.datamonitorsystem.pojo
+  mapper-locations: classpath:com/monitor/datamonitorsystem/dao/*.xml
+
+logging:
+  config: classpath:log4j2.xml

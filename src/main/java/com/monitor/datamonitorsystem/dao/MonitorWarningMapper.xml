@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.monitor.datamonitorsystem.dao.MonitorWarningMapper">
+  <resultMap id="BaseResultMap" type="com.monitor.datamonitorsystem.pojo.MonitorWarningPo">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="WARN_APP" jdbcType="VARCHAR" property="warnApp" />
+    <result column="WARN_CONTENT" jdbcType="VARCHAR" property="warnContent" />
+    <result column="WARN_LEVEL" jdbcType="DECIMAL" property="warnLevel" />
+    <result column="CREATE_TIME" jdbcType="VARCHAR" property="createTime" />
+    <result column="LOCALDATE" jdbcType="VARCHAR" property="localdate" />
+    <result column="LOCALTIME" jdbcType="VARCHAR" property="localtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, WARN_APP, WARN_CONTENT, WARN_LEVEL, CREATE_TIME, LOCALDATE, LOCALTIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from MONITOR_WARNING
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from MONITOR_WARNING
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.monitor.datamonitorsystem.pojo.MonitorWarningPo">
+    insert into MONITOR_WARNING (ID, WARN_APP, WARN_CONTENT, 
+      WARN_LEVEL, CREATE_TIME, LOCALDATE, 
+      LOCALTIME)
+    values (#{id,jdbcType=DECIMAL}, #{warnApp,jdbcType=VARCHAR}, #{warnContent,jdbcType=VARCHAR}, 
+      #{warnLevel,jdbcType=DECIMAL}, #{createTime,jdbcType=VARCHAR}, #{localdate,jdbcType=VARCHAR}, 
+      #{localtime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.monitor.datamonitorsystem.pojo.MonitorWarningPo">
+    insert into MONITOR_WARNING
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="warnApp != null">
+        WARN_APP,
+      </if>
+      <if test="warnContent != null">
+        WARN_CONTENT,
+      </if>
+      <if test="warnLevel != null">
+        WARN_LEVEL,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="localdate != null">
+        LOCALDATE,
+      </if>
+      <if test="localtime != null">
+        LOCALTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="warnApp != null">
+        #{warnApp,jdbcType=VARCHAR},
+      </if>
+      <if test="warnContent != null">
+        #{warnContent,jdbcType=VARCHAR},
+      </if>
+      <if test="warnLevel != null">
+        #{warnLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="localdate != null">
+        #{localdate,jdbcType=VARCHAR},
+      </if>
+      <if test="localtime != null">
+        #{localtime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.monitor.datamonitorsystem.pojo.MonitorWarningPo">
+    update MONITOR_WARNING
+    <set>
+      <if test="warnApp != null">
+        WARN_APP = #{warnApp,jdbcType=VARCHAR},
+      </if>
+      <if test="warnContent != null">
+        WARN_CONTENT = #{warnContent,jdbcType=VARCHAR},
+      </if>
+      <if test="warnLevel != null">
+        WARN_LEVEL = #{warnLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="localdate != null">
+        LOCALDATE = #{localdate,jdbcType=VARCHAR},
+      </if>
+      <if test="localtime != null">
+        LOCALTIME = #{localtime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.monitor.datamonitorsystem.pojo.MonitorWarningPo">
+    update MONITOR_WARNING
+    set WARN_APP = #{warnApp,jdbcType=VARCHAR},
+      WARN_CONTENT = #{warnContent,jdbcType=VARCHAR},
+      WARN_LEVEL = #{warnLevel,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      LOCALDATE = #{localdate,jdbcType=VARCHAR},
+      LOCALTIME = #{localtime,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
